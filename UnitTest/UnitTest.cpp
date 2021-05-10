@@ -1,7 +1,6 @@
-#include "pch.h"
 #include "CppUnitTest.h"
 #include "MergeCommonForm.h"
-
+#include <string>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
@@ -12,9 +11,10 @@ namespace UnitTest
 		
 		TEST_METHOD(FileRead)
 		{
-			merge::MergeCommonForm mcf;
-			char* content = mcf.__ReadOnce("TestCase\\helloworld.txt");
-			Assert::AreEqual(content, "HelloWorld");
+			char* path = "E:\\source\\C\\MergeCommonForm\\UnitTest\\TestCase\\helloworld.txt";
+			merge::MergeCommonForm mcf(path, "", "");
+			std::string content = std::string((char*)mcf._p_recipe);
+			Assert::AreEqual(content, std::string("HelloWorld"));
 		}
 	};
 }

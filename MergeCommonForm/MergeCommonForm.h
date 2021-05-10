@@ -1,15 +1,16 @@
 #pragma once
-#include <omp.h>
-#include <vector>
+//#include <omp.h>
+//#include <vector>
 namespace merge {
 	class MergeCommonForm {
 	public:
-		MergeCommonForm(); // test
 		MergeCommonForm(char* recipe_path, char* src, char* dest);
 		~MergeCommonForm();
 		
 	//protected:
 		void _ReadRecipe(char* recipe_path);
+		void* _p_recipe;
+
 		void _SaveCommonForm();
 		char* __ReadOnce(char* path);
 
@@ -18,6 +19,6 @@ namespace merge {
 			int turn;
 			double corr;
 		};
-		std::vector<struct recipe> mTurnTable;
+		//std::vector<struct recipe> mTurnTable;
 	};
 }
