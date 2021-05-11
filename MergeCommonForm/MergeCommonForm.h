@@ -1,6 +1,7 @@
 #pragma once
 //#include <omp.h>
-//#include <vector>
+#include <vector>
+#include <string>
 namespace merge {
 	class MergeCommonForm {
 	public:
@@ -9,10 +10,8 @@ namespace merge {
 		
 	//protected:
 		void _ReadRecipe(char* recipe_path);
-		void* _p_recipe;
 
 		void _SaveCommonForm();
-		char* __ReadOnce(char* path);
 
 		struct recipe {
 			char* name;
