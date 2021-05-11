@@ -6,10 +6,10 @@ namespace txtRead {
 	public :
 		txtRead();
 		~txtRead();
-		void ReadAll(char* path);
+		void ReadAll(const char* path);
 		void* GetContentPtr();
-		std::vector<std::string> Split(char* content, char* delimeter);
-		std::vector<std::string> File2Vector(char* path);
+		std::vector<std::string> Split(const char* content, const char* delimeter);
+		std::vector<std::string> File2Vector(const char* path);
 	protected:
 		void* _content;
 	};

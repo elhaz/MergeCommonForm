@@ -15,7 +15,7 @@ txtRead::txtRead::~txtRead() {
 // discription	:	read file at once
 // parameter	:	file path
 // return		:	The entire contents of the file
-void txtRead::txtRead::ReadAll(char* path) {
+void txtRead::txtRead::ReadAll(const char* path) {
 	char* buffer = 0;
 	long length;
 	FILE* f;
@@ -38,7 +38,7 @@ void* txtRead::txtRead::GetContentPtr() {
 	return _content;
 }
 
-std::vector<std::string> txtRead::txtRead::Split(char* content, char* delimeter)
+std::vector<std::string> txtRead::txtRead::Split(const char* content, const char* delimeter)
 {
 	std::vector<std::string> answer;
 	size_t str_begin = 0, str_end = 0;
@@ -46,7 +46,7 @@ std::vector<std::string> txtRead::txtRead::Split(char* content, char* delimeter)
 	size_t deli_size = strlen(delimeter);
 	while (true) {
 		// Find delimeter charecter position
-		char* position = std::find(content + str_begin, content + file_size, *delimeter);
+		const char* position = std::find(content + str_begin, content + file_size, *delimeter);
 		if (position != content + file_size) {
 			str_end = position - content;
 			answer.push_back(std::string(content + str_begin, content + str_end));
@@ -69,7 +69,7 @@ std::vector<std::string> txtRead::txtRead::Split(char* content, char* delimeter)
 	return answer;
 }
 
-std::vector<std::string> txtRead::txtRead::File2Vector(char* path) {
+std::vector<std::string> txtRead::txtRead::File2Vector(const char* path) {
 	ReadAll(path);
 	return Split((char*)_content, (char*)"\r\n\0");
 }

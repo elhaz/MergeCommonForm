@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "txtRead.h"
+#include "MergeCommonForm.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
@@ -9,24 +10,26 @@ namespace UnitTest
 	TEST_CLASS(UnitTest)
 	{
 	public:
-		std::string root_path = "E:\\source\\C\\MergeCommonForm\\UnitTest\\TestCase\\";
-		//std::string root_path = "D:\\source\\Project\\MergeCommonForm\\UnitTest\\TestCase\\";
-		TEST_METHOD(FileRead)
+		//std::string root_path = "E:\\source\\C\\MergeCommonForm\\UnitTest\\TestCase\\";
+		std::string root_path = "D:\\source\\Project\\MergeCommonForm\\UnitTest\\TestCase\\";
+		TEST_METHOD(TEST1_FileRead)
 		{
-
-			char* path1 = "E:\\source\\C\\MergeCommonForm\\UnitTest\\TestCase\\helloworld.txt";
-			char* path2 = "D:\\source\\Project\\MergeCommonForm\\UnitTest\\TestCase\\helloworld.txt";
+			std::string path = root_path + "helloworld.txt";
 			txtRead::txtRead read;
-			read.ReadAll(path2);
-			
+			read.ReadAll(path.c_str());
 			Assert::AreEqual(std::string((char*)(read.GetContentPtr())), std::string("HelloWorld"));
 		}
-		TEST_METHOD(SPLIT) {
-			char* path1 = "E:\\source\\C\\MergeCommonForm\\UnitTest\\TestCase\\split.txt";
-			char* path2 = "D:\\source\\Project\\MergeCommonForm\\UnitTest\\TestCase\\split.txt";
+		TEST_METHOD(TEST2_SPLIT) {
+			std::string path = root_path + "split.txt";
 			txtRead::txtRead read;
-			auto l = read.File2Vector(path2);
+			auto l = read.File2Vector(path.c_str());
 			Assert::AreEqual((int)l.size(), 6);
+		}
+
+		TEST_METHOD(TEST3_RECIPE_CHECK) {
+			std::string path = root_path + "recipe_exam.csv";
+			merge::MergeCommonForm mcf(path.c_str(), "", "");
+			Assert::AreEqual(mcf.get_recipe_count(), 4);
 		}
 	};
 }

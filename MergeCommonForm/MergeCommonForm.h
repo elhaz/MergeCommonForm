@@ -3,21 +3,23 @@
 #include <vector>
 #include <string>
 namespace merge {
+	struct recipe {
+		std::string name;
+		int turn;
+		double corr;
+	};
+
 	class MergeCommonForm {
 	public:
-		MergeCommonForm(char* recipe_path, char* src, char* dest);
+		MergeCommonForm(const char* recipe_path, const char* src, const char* dest);
 		~MergeCommonForm();
-		
-	//protected:
-		void _ReadRecipe(char* recipe_path);
-
+		int get_recipe_count();
+	protected:
+		void _ReadRecipe(const char* recipe_path);
 		void _SaveCommonForm();
 
-		struct recipe {
-			char* name;
-			int turn;
-			double corr;
-		};
-		//std::vector<struct recipe> mTurnTable;
+		const char comment_char = '#';
+		const int _no_value_ = INT32_MAX;
+		std::vector<struct recipe> mTurnTable;
 	};
 }
